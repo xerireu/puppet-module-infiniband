@@ -20,7 +20,7 @@ define infiniband::map_ib (
   validate_string($rpfilter)
   validate_string($ibnetmask)
   validate_hash($ibnetworks)
-  
+
   $_net_eval = "network_${real_interface}"
   $_mask_eval = "netmask_${real_interface}"
   $_ip_eval = "ipaddress_${real_interface}"
