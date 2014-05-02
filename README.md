@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.org/xerireu/puppet-module-infiniband.png?branch=master)](https://travis-ci.org/xerireu/puppet-module-infiniband)
 
-This modules manages a infiniband network with both IPoIB and Xsigo virtual ethernet interfaces.
+This modules manages hosts in a infiniband network with both IPoIB Xsigo virtual ethernet interfaces 
 
 ===
 
