@@ -7,5 +7,6 @@ module Puppet::Parser::Functions
     netmask = IPAddr.new(args[2])
     hostpart = ~netmask&public_ip
     ip_ib = ib_net|hostpart
+    ip_ib.to_s()
   end
 end
