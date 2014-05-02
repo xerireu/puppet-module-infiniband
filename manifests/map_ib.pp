@@ -14,6 +14,13 @@ define infiniband::map_ib (
   else {
     $real_interface = $title
   }
+
+  validate_string($real_interface)
+  validate_string($ibinterface)
+  validate_string($rpfilter)
+  validate_string($ibnetmask)
+  validate_hash($ibnetworks)
+  
   $_net_eval = "network_${real_interface}"
   $_mask_eval = "netmask_${real_interface}"
   $_ip_eval = "ipaddress_${real_interface}"
@@ -26,6 +33,7 @@ define infiniband::map_ib (
     $ib_net = $ipnmask[0]
     $ib_mask = $ipnmask[1]
     $ib_ip = to_ib_network($vnic_ip, $ib_net, $vnic_netmask)
+
     network::if::static { $ibinterface:
       ensure    => 'up',
       ipaddress => $ib_ip,
