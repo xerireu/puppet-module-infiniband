@@ -44,6 +44,6 @@ Hash of hostnames with IPoIB addresses that should be added to /etc/hosts (not i
 
 ibinterface
 -------------
-Default IPoIP interface to map address to.
+Default IPoIB interface to map address to.
 
 - *Default*: ib0
