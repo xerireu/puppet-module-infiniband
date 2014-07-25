@@ -34,10 +34,12 @@ define infiniband::map_ib (
     $ib_mask = $ipnmask[1]
     $ib_ip = to_ib_network($vnic_ip, $ib_net, $vnic_netmask)
 
-    network::if::static { $ibinterface:
-      ensure    => 'up',
-      ipaddress => $ib_ip,
-      netmask   => $ib_mask,
+    if !defined(Network::If::Static[$ibinterface]) {
+      network::if::static { $ibinterface:
+        ensure    => 'up',
+        ipaddress => $ib_ip,
+        netmask   => $ib_mask,
+      }
     }
   }
 
