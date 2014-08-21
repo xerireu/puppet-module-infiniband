@@ -35,10 +35,25 @@ define infiniband::map_ib (
     $ib_ip = to_ib_network($vnic_ip, $ib_net, $vnic_netmask)
 
     if !defined(Network::If::Static[$ibinterface]) {
-      network::if::static { $ibinterface:
-        ensure    => 'up',
-        ipaddress => $ib_ip,
-        netmask   => $ib_mask,
+      if $::osfamily == 'Suse' {
+        file { "/etc/sysconfig/network/ifcfg-${ibinterface}":
+          owner   => 'root',
+          group   => 'root',
+          mode    => '0644',
+          content => "BOOTPROTO='static'\nSTARTMODE='auto'\nUSERCONTROL='no'\nIPADDR=\"${ib_ip}\"\nNETMASK=\"${ib_mask}\"\n",
+          notify  => Exec["suse-infiniband-ifup-${ibinterface}"],
+        }
+        exec { "suse-infiniband-ifup-${ibinterface}":
+          command     => "/sbin/ifup ${ibinterface}",
+          refreshonly => true,
+        }
+      }
+      else {
+        network::if::static { $ibinterface:
+          ensure    => 'up',
+          ipaddress => $ib_ip,
+          netmask   => $ib_mask,
+        }
       }
     }
   }
