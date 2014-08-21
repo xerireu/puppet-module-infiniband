@@ -1,5 +1,5 @@
 name 'xerireu/infiniband'
-version '0.3.0'
+version '0.3.3'
 source 'git://github.com/xerireu/puppet-module-infiniband.git'
 author 'xerireu'
 license 'Apache License, Version 2.0'
