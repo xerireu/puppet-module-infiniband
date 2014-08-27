@@ -16,7 +16,6 @@ class infiniband (
 
   validate_bool($map_ib_real)
   validate_hash($ibnetworks)
-  validate_hash($ibhosts)
   validate_string($ibnetmask) # TODO: replace with validate_re
   validate_string($ibinterface)
 
