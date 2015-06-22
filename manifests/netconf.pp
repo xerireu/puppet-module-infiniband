@@ -23,6 +23,20 @@ define infiniband::netconf (
       refreshonly => true,
     }
   }
+  elsif $::osfamily == 'RedHat' {
+    file { "/etc/sysconfig/network-scripts/ifcfg-${rinterface}":
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => "DEVICE=${rinterface}\nBOOTPROTO=static\nONBOOT=yes\nHOTPLUG=yes\nIPADDR=${ip}\nNETMASK=${netmask}\nNM_CONTROLLED=no\n",
+      notify  => Exec["rhel-infiniband-ifup-${rinterface}"],
+    }
+    exec { "rhel-infiniband-ifup-${rinterface}":
+      command     => "/sbin/ifup ${rinterface}",
+      refreshonly => true,
+    }
+  }
+  
   else {
     network::if::static { $rinterface:
       ensure    => 'up',
