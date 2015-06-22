@@ -5,7 +5,8 @@ class infiniband (
   $ibnetworks  = undef,
   $ibnetmask   = '255.255.252.0',
   $ibhosts     = undef,
-  $ibinterface = 'ib0'
+  $ibinterface = 'ib0',
+  $ibhosts     = '',
 ) {
 
   if type($map_ib) == 'string' {
