@@ -7,6 +7,5 @@ define infiniband::hosts (
   $hostdata = file($ibhosts)
   $temphosts = parsejson($hostdata)
   $hosts = delete($temphosts, $::hostname)
-#  $hostdefaults = { 'require' => Infiniband::Netconf[$ibinterface] }
   create_resources('host', $hosts)
 }
