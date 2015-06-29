@@ -8,4 +8,3 @@ description 'This modules manages hosts in a infiniband network with both IPoIB 
 project_page 'https://github.com/xerireu/puppet-module-infiniband'
 
 dependency 'puppetlabs/stdlib', '>= 3.2.0'
-dependency 'razorsedge/network', '>= 2.2.0'

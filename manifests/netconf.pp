@@ -37,12 +37,4 @@ define infiniband::netconf (
       refreshonly => true,
     }
   }
-
-  else {
-    network::if::static { $rinterface:
-      ensure    => 'up',
-      ipaddress => $ip,
-      netmask   => $netmask,
-    }
-  }
 }
