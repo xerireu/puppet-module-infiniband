@@ -4,6 +4,7 @@ define infiniband::netconf (
   $ip,
   $netmask,
   $interface='',
+  $bonding_master='',
 ) {
   if !$interface {
     $rinterface = $title
