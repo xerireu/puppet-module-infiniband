@@ -38,9 +38,9 @@ Netmask of IPoIB network.
 
 ibhosts
 -------------
-Hash of hostnames with IPoIB addresses that should be added to /etc/hosts (not implemented yet).
+Path to json file containing resource definitions for hosts to be added on host where IPoIB is managed by this module
 
-- *Default*: undef
+- *Default*: ''
 
 ibinterface
 -------------
