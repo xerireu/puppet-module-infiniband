@@ -28,4 +28,12 @@ class infiniband (
       ibinterface => $ibinterface,
     }
   }
+
+  if ! empty($ibhosts) {
+    validate_absolute_path($ibhosts)
+    infiniband::hosts { 'ibhosts':
+      ibhosts => $infiniband::ibhosts,
+      require => Infiniband::Netconf[$ibinterface],
+    }
+  }
 }

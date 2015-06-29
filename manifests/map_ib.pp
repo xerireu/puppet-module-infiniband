@@ -39,10 +39,6 @@ define infiniband::map_ib (
         ip      => $ib_ip,
         netmask => $ib_mask,
       }
-      infiniband::hosts { 'ibhosts':
-        ibhosts => $infiniband::ibhosts,
-        require => Infiniband::Netconf[$ibinterface],
-      }
     }
   }
 }
