@@ -37,7 +37,7 @@ define infiniband::netconf (
       refreshonly => true,
     }
   }
-  
+
   else {
     network::if::static { $rinterface:
       ensure    => 'up',
