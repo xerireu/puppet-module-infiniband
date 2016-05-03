@@ -9,7 +9,7 @@ class infiniband (
   $ibhosts     = '',
 ) {
 
-  if type($map_ib) == 'string' {
+  if type3x($map_ib) == 'string' {
     $map_ib_real = str2bool($map_ib)
   } else {
     $map_ib_real = $map_ib
