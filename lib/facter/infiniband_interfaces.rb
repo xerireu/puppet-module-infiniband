@@ -7,17 +7,11 @@ Facter.add("vnic_interfaces") do
     raw_ifaces = []
     bond_ifaces = []
     vlan_ifaces = []
-    Dir.foreach("/sys/class/net") { |ifd|
-      ethtool_output = Facter::Util::Resolution.exec("ethtool -i #{ifd} 2>/dev/null")
-      if not ethtool_output then
-        next
-      end
-      ethtool_output.each_line { |ethtool_line|
-        key, val = ethtool_line.chomp.split(": ", 2)
-        if key == "driver" and val == "xsvnic" then
-          raw_ifaces.push(ifd)
-        end
-      }
+    Dir.foreach("/proc/driver/xsvnic/devices/") { |ifd|
+       if ifd[0] == '.' then
+         next
+       end
+       raw_ifaces.push(ifd)
     }
     ifaces = ifaces + raw_ifaces
     raw_ifaces.each { |iface|
